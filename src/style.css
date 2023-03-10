@@ -92,7 +92,7 @@ nav{
 }
 
 form{
-    width: min(250px, 95%);
+    width: min(20rem, 95%);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 1.2rem;
@@ -101,12 +101,26 @@ form{
     gap: 0.8rem;
     background-color: rgb(189, 189, 189);
     justify-self: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.historyBtn{
+    grid-column: 4;
+    background: none;
+    border: none;
+    font-size: 18px;
+    display: grid;
+    justify-content: right;
+    cursor: pointer;
+    color: rgb(50, 49, 49);
+    position: relative;
 }
 
 /*Calc Inputs*/
 .screen{
     grid-column: 1/5;
-    font-size: 23px;
+    font-size: 30px;
     padding: 1.5rem 0.8rem;
     border-radius: 7px;
     border: none;
@@ -126,13 +140,19 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 input[type=number] {
+    appearance: textfield;
     -moz-appearance: textfield;
     text-indent: 9px;
     caret-color: rgb(41, 125, 233);
 }
 
-form>*:not(:first-child){
-    padding: 0.7rem 0rem;
+form>*:first-child{
+    font-size: 21px;
+}
+
+form>*:not(:first-child,:nth-child(2),:last-child){
+    padding: 1rem 1rem;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     color: rgb(50, 49, 49);
@@ -142,28 +162,94 @@ form>*:not(:first-child){
     border-radius: 5px;
 }
 
-form>*:not(:first-child):hover{
+form>*:not(:first-child,:nth-child(2),:last-child):hover{
     scale: 0.96;
 }
 
-form>*:nth-child(2){
+form>*:nth-child(3){
     background-color: rgb(250, 89, 89);
     color: white;
 }
 
-form>*:nth-child(3){
+form>*:nth-child(4){
     background-color: rgb(30, 29, 29);
     color: white;
 }
 
-form>*:nth-child(13){
-    grid-row: 4/6;
+form>*:nth-child(14){
+    grid-row: 5/7;
     grid-column: 4/5;
     background-color: rgb(21, 146, 21) !important;
     color: white;
 }
 
-form>*:last-child{
+form>*:nth-child(21){
     background-color: rgb(41, 125, 233);
     color: white;
+}
+
+.historyBody{
+    position: absolute;
+    bottom: 0;
+    background-color: brown;
+    height: 80%;
+    width: 100%;
+    clip-path: inset(100% 0 0 0);
+    transition: 0.5s ease-out;
+    background-color: rgb(162, 162, 162);
+    display: grid;
+    grid-template-rows: 90% 10%;
+    padding-left: 1rem;
+}
+
+.historyValsDiv{
+    display: grid;
+    align-content: baseline;
+    gap: 1rem;
+    justify-items: right;
+    padding: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.historyVals{
+    display: grid;
+    justify-items: right;
+}
+
+.historyVals>*:last-child{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.clrHistory{
+    position: relative;
+    background: none;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    justify-self: left;
+}
+
+
+.showHistoryBody{
+    clip-path: inset(0 0 0 0);
+    transition: 1s ease;
+}
+
+/*Dark Theme*/
+
+.darkTheme{
+    background-color: #000814 !important;
+    color: white !important;
+    box-shadow: 0px 0px 2px 1px grey !important;
+}
+
+.boxShadow{
+    box-shadow: 0px 0px 2px 1px grey !important;
+}
+
+.fontColor{
+    color: white !important;
 }

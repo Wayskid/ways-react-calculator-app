@@ -7,21 +7,6 @@ export function CalculatorProvider({children}){
     // Light or Dark mode
     const [lightOrDark, setLightOrDark] = useState(JSON.parse(localStorage.getItem("theme")) || false);
 
-    const lightDarkStyle = {
-        backgroundColor: "#000814",
-        boxShadow: "0px 0px 2px 1px grey"
-    };
-
-    const lightDarkButtonStyle = {
-        backgroundColor: "#000814",
-        color: "white",
-        boxShadow: "0px 0px 2px 1px grey"
-    };
-
-    const specialBtnStyle = {
-        boxShadow: "0px 0px 2px 1px grey"
-    };
-
     function handleTheme() {
         setLightOrDark(!lightOrDark);
     }
@@ -76,13 +61,33 @@ export function CalculatorProvider({children}){
         return prevVal += e.target.value
       })
     }
+    
+    //History
+    const [ historyShown, setHistoryShown ] = useState(false)
+    
+    const [ historyVals, setHistoryVals ] = useState([])
+    
+    function showHistory(){
+      setHistoryShown(!historyShown)
+    }
+
+    //Clear history
+    function clearHistory(){
+      setHistoryVals([])
+    }
 
     //Equal btn
     function handleEquation(e) {
       e.preventDefault()
       setInputVal(eval(inputVal))
+      setHistoryVals([...historyVals, 
+        {
+          qstn: inputVal,
+          ans: eval(inputVal)
+        }
+      ])
     }
-
+    
     //ClearAll btn
     function handleClearAll() {
       setInputVal("")
@@ -99,15 +104,16 @@ export function CalculatorProvider({children}){
         <CalculatorContext.Provider value={{
           numberBtns,
           lightOrDark,
-          lightDarkStyle,
-          lightDarkButtonStyle,
           handleTheme,
-          specialBtnStyle,
           handleInput,
           inputVal,
           handleEquation,
           handleClearAll,
           handleClear,
+          showHistory,
+          historyShown,
+          historyVals,
+          clearHistory
         }}>
             {children}
         </CalculatorContext.Provider>

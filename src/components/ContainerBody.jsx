@@ -7,11 +7,10 @@ export default function ContainerBody() {
 
   const {
     lightOrDark,
-    lightDarkStyle,
 } = useContext(CalculatorContext) 
 
   return (
-    <div className="containerBody" style={lightOrDark ? lightDarkStyle : {}}>
+    <div className= {`containerBody ${lightOrDark ? "darkTheme" : ""}`}>
         <div className="calcBody">
           <NavBar />
           <Calculator />

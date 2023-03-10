@@ -7,7 +7,6 @@ export default function Button({btn}) {
   const {
     handleInput,
     lightOrDark,
-    lightDarkButtonStyle
   } = useContext(CalculatorContext)
 
   return (
@@ -15,7 +14,7 @@ export default function Button({btn}) {
       onClick={handleInput} 
       type="button" 
       value={btn.value}
-      style={lightOrDark ? lightDarkButtonStyle : {}}
+      className={lightOrDark ? "darkTheme" : ""}
     >{btn.value}</button>
   )
 }
